@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>pro</title>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script>
+        $(function () {
+            $("#btn").click(function () {
+                $.ajax({
+                    url:"proServlet",
+                    type:"get",
+                    data:{"sel":$("#sel").val()+"李四"},
+                    success:function (data) {
+                        $(data).each(function () {
+                            var op = document.createElement("option");
+                            $("#sel").append($(op).html(this.name).val(this.id));
+                        });
+                    },
+                    error:function () {
+                        alert("ErrorPage!");
+                    },
+                    dataType:"json"
+                });
+            });
+        })
+    </script>
+</head>
+<body>
+<input type="button" id="btn" value="111">
+<select id="sel" name="sel">
+    <option value="">--省份--</option>
+    <option value="上海">上海</option>
+</select>
+</body>
+</html>
